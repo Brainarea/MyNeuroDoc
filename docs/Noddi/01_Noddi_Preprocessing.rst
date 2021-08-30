@@ -33,12 +33,14 @@ GETTING DOCKER IMAGE
 - Unfortunately, CHEAHA does not support Docker. However, we can use Singularity which is pretty much the same.
 - First let's load Singularity on Cheaha. Open a terminal and type:
 
-.. code:: bash
+:: 
   module load Singularity
-- Next let's convert the Docker image and put it in a folder of your choice (change /path/to/ ):
+  
+  - Next let's convert the Docker image and put it in a folder of your choice (change /path/to/ ):
 
-.. code:: bash
+::
   singularity build /path/to/singularity/NODDI_docker.simg docker://orchid666/myneurodocker:NODDI
+  
 - You are now ready to preprocess your images!!
 
 
@@ -61,12 +63,12 @@ LAUNCHING DOCKER SESSION
 - You are now ready to preprocess your diffusion images
 - Let's go to where you put the Singularity image:
 
-.. code:: bash
+::
   cd /path/to/singularity/
   
 - Now let's launch the Docker session and tell it where your stuff is:
 
-.. code:: bash
+::
   singularity shell \
   --bind /Noddi_analysis:/data \
   --bind /path/to/scripts:/myscripts \
