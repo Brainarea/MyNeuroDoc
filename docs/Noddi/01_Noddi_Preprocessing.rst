@@ -1,10 +1,10 @@
-###################
-NODDI ANALYSIS PART 1: PREPROCESSING
-###################
 
-*****************
+NODDI ANALYSIS PART 1: PREPROCESSING
+====================================
+
+
 CHEAHA
-*****************
+------
 
 Connect to your CHEAHA account:
 
@@ -17,17 +17,17 @@ Connect to your CHEAHA account:
 
 Now let's do some magic.
 
-*****************
+
 GETTING ESSENTIAL FILES
-*****************
+-----------------------
 
 - All you need is the script file and a config file!
 - Both are available at: https://github.com/Brainarea/NODDI/tree/main/Preproc_Files
 - Download both files and put them in a folder on Cheaha.
 
-*****************
+
 GETTING DOCKER IMAGE
-*****************
+--------------------
 
 - All the toolbox and packages analysis you need have been put into a Docker image (yeah!)
 - Unfortunately, CHEAHA does not support Docker. However, we can use Singularity which is pretty much the same.
@@ -41,9 +41,9 @@ GETTING DOCKER IMAGE
   singularity build /path/to/singularity/NODDI_docker.simg docker://orchid666/myneurodocker:NODDI
 - You are now ready to preprocess your images!!
 
-  *****************
-  COPY MRI IMAGES
-  *****************
+
+COPY MRI IMAGES
+---------------
 
 - Create a folder for the NODDI analysis, for example : /Noddi_analysis/
 - Within that folder, create a Raw_data folder: /Noddi_analysis/Raw_data/
@@ -54,9 +54,9 @@ GETTING DOCKER IMAGE
 
 - **Note: Name of subject folder folders does not matter. T1 folder name needs to start with 'T1' and DWI folder name needs to start with 'dMRI'**
 
-  *****************
-  LAUNCHING DOCKER SESSION
-  *****************
+
+LAUNCHING DOCKER SESSION
+-------------------------
 
 - You are now ready to preprocess your diffusion images
 - Let's go to where you put the Singularity image:
@@ -71,9 +71,10 @@ GETTING DOCKER IMAGE
   --bind /path/to/scripts:/myscripts \
   NODDI_docker.simg
 - **Note: --bind command is like a mount. First is to tell where the data is, second where the scripts are.**
-*****************
+
+
 PREPROCESSING
-*****************
+-------------
 
 - Your scripts folder has been mounted to /myscript on the Singularity session so let's go there:
 
@@ -87,9 +88,9 @@ PREPROCESSING
 - **Note 2: Preprocessing can be long so be patient!**
 - A 'Preprocessed' folder will be created within your Data folder containing all preprocessed files for each subject.
 
-*****************
-PREPROCESSING WITH PARALLEL
-*****************
+
+PREPROCESSING MULTIPLE SUBJECTS WITH PARALLEL
+--------------------------------------------
 
 - Now you may want to process several Subjects at once. Fortunately, the person who made the Docker image (me!) also put a nice tool to do so.
 - Example of how to do parallel processing with a find command:
@@ -100,9 +101,9 @@ PREPROCESSING WITH PARALLEL
   find ${raw_dir} -name "CBD*" | parallel --eta bash preproc_NODDI_Singularity.sh {/}
 - **Note: Be sure to have enough time on your CHEAHA session, preprocessing of multiple subjects in parallel can take hours!!**
 
-*****************
-PREPROCESSING WITH SLURM (CHEAHA)
-*****************
+PREPROCESSING MULTIPLE SUBJECTS WITH SLURM (CHEAHA)
+---------------------------------------------------
+
 # Create JOB file
 
 - Another possibility to do parallel multi-processing is to use SLURM on Cheaha. In order to do that we need to create a job file. Let's start with a simple job for one subject:
