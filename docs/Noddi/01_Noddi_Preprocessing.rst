@@ -63,6 +63,7 @@ LAUNCHING DOCKER SESSION
 
 .. code:: bash
   cd /path/to/singularity/
+  
 - Now let's launch the Docker session and tell it where your stuff is:
 
 .. code:: bash
@@ -70,6 +71,7 @@ LAUNCHING DOCKER SESSION
   --bind /Noddi_analysis:/data \
   --bind /path/to/scripts:/myscripts \
   NODDI_docker.simg
+  
 - **Note: --bind command is like a mount. First is to tell where the data is, second where the scripts are.**
 
 
@@ -80,10 +82,12 @@ PREPROCESSING
 
 .. code:: bash
   cd /myscripts
+  
 - Now in order to preprocess one subject, you just need to give its name to the script you have downloaded earlier:
 
 .. code:: bash
   ./preproc_NODDI_Singularity.sh 'Subject_001'
+  
 - **Note 1: If you get a Permission denied error, please do a chmod +x on preproc_NODDI_Singularity.sh script**
 - **Note 2: Preprocessing can be long so be patient!**
 - A 'Preprocessed' folder will be created within your Data folder containing all preprocessed files for each subject.
@@ -99,6 +103,7 @@ PREPROCESSING MULTIPLE SUBJECTS WITH PARALLEL
   raw_dir=/data/Raw_data
   TMPDIR=/tmp
   find ${raw_dir} -name "CBD*" | parallel --eta bash preproc_NODDI_Singularity.sh {/}
+  
 - **Note: Be sure to have enough time on your CHEAHA session, preprocessing of multiple subjects in parallel can take hours!!**
 
 PREPROCESSING MULTIPLE SUBJECTS WITH SLURM (CHEAHA)
@@ -120,6 +125,7 @@ PREPROCESSING MULTIPLE SUBJECTS WITH SLURM (CHEAHA)
   --bind /data/user/rodolphe/Data/MRST/NODDI:/data \
   --bind /data/user/rodolphe/Scripts/Origin/Szaflarski\ lab/MRST/NODDI/preprocessing:/myscripts \
   NODDI_docker.simg bash /myscripts/preproc_NODDI_Singularity.sh 'MRST5012'
+  
 - A job works exactly like creating an interactive session and running the preprocessing script through the Singularity container:
 
   - With #SBATCH options we ask for a type of partition (short, long, medium,...) with a certain number of CPUs, memory per CPU and a duration time.
@@ -141,6 +147,7 @@ PREPROCESSING MULTIPLE SUBJECTS WITH SLURM (CHEAHA)
   --bind /data/user/rodolphe/Data/MRST/NODDI:/data \
   --bind /data/user/rodolphe/Scripts/Origin/Szaflarski\ lab/MRST/NODDI/preprocessing:/myscripts \
   NODDI_docker.simg bash /myscripts/preproc_NODDI_Singularity.sh ${FILES[$SLURM_ARRAY_TASK_ID]}
+  
 - The new #SBATCH array is telling the system how many jobs we want (It is a range , starting from zero!!). Then we create a list of subject ID (array named FILES). We use  ${FILES[$SLURM_ARRAY_TASK_ID]} in order to access each subject ID. This will create 5 jobs with $SLURM_ARRAY_TASK_ID having a different value in each one on them (from 0 to 4).
 
 
@@ -161,6 +168,7 @@ PREPROCESSING MULTIPLE SUBJECTS WITH SLURM (CHEAHA)
   --bind /data/user/rodolphe/Data/MRST/NODDI:/data \
   --bind /data/user/rodolphe/Scripts/Origin/Szaflarski\ lab/MRST/NODDI/preprocessing:/myscripts \
   NODDI_docker.simg bash /myscripts/preproc_NODDI_Singularity.sh ${FILES[$SLURM_ARRAY_TASK_ID]}
+  
 # Use Job files
 
 - Now that you have your job save as a file let's use it. Go to rc.uab.edu then click on Jobs>Job composer.
