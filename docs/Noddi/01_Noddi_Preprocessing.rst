@@ -33,12 +33,14 @@ GETTING DOCKER IMAGE
 - Unfortunately, CHEAHA does not support Docker. However, we can use Singularity which is pretty much the same.
 - First let's load Singularity on Cheaha. Open a terminal and type:
 
-:: 
+::
+
   module load Singularity
   
-  - Next let's convert the Docker image and put it in a folder of your choice (change /path/to/ ):
+- Next let's convert the Docker image and put it in a folder of your choice (change /path/to/ ):
 
 ::
+
   singularity build /path/to/singularity/NODDI_docker.simg docker://orchid666/myneurodocker:NODDI
   
 - You are now ready to preprocess your images!!
