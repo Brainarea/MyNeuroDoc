@@ -2,7 +2,6 @@
 NODDI ANALYSIS PART 1: PREPROCESSING
 ====================================
 
-
 CHEAHA
 ------
 
@@ -16,7 +15,6 @@ Connect to your CHEAHA account:
 - Hurray, you are now in your own Linux session on CHEAHA!
 
 Now let's do some magic.
-
 
 GETTING ESSENTIAL FILES
 -----------------------
