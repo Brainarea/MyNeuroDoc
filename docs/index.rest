@@ -5,4 +5,5 @@ Welcome to My Neuro Documentation
    :maxdepth: 1
    :caption: NODDI
 
-   noddi/01_Noddi_Preprocessing
+   Noddi/01_Noddi_Preprocessing
+   Noddi/02_Noddi_Create_Maps
