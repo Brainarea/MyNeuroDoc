@@ -24,6 +24,7 @@ RUN THE SCRIPT
 
 .. code:: bash
   module load rc/matlab/R2020a
+  
 - **Note: Other matlab version are available on CHEAHA, R2020a is working fine but feel free to change if needed**
 - Then type matlab in terminal to launch MATLAB
 - Open the matlab script you previously downloaded.
