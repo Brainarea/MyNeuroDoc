@@ -22,7 +22,8 @@ Run the script
 
 - Let's open Matlab on CHEAHA, open a new terminal and type:
 
-.. code:: bash
+::
+
   module load rc/matlab/R2020a
 
 - **Note: Other matlab version are available on CHEAHA, R2020a is working fine but feel free to change if needed**
@@ -48,7 +49,8 @@ Run the script on slurm (cheaha)
   - batch_fitting.m: Modified file from Noddi toolbox. Replace one existing in toolbox folder with that one.
   - Both files are available in MAtlab_files_SLURM folder of the github repository ( https://github.com/Brainarea/NODDI/)
 
-.. code:: bash
+::
+
   #!/bin/bash
   #SBATCH --partition=medium
   #SBATCH --cpus-per-task=20
