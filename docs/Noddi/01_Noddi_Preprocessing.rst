@@ -54,7 +54,7 @@ Copy mri images
   - /Noddi_analysis/Raw_data/Subject_001/T1/
   - /Noddi_analysis/Raw_data/Subject_001/dMRI/
 
-- **Note: Name of subject folder folders does not matter. T1 folder name needs to start with 'T1' and DWI folder name needs to start with 'dMRI'**
+- **Note: Name of subject folder folders does not matter. T1 folder name needs to start with `` 'T1' `` and DWI folder name needs to start with `` 'dMRI'** ``
 
 
 Launching docker session
@@ -64,11 +64,13 @@ Launching docker session
 - Let's go to where you put the Singularity image:
 
 ::
+
   cd /path/to/singularity/
 
 - Now let's launch the Docker session and tell it where your stuff is:
 
 ::
+
   singularity shell \
   --bind /Noddi_analysis:/data \
   --bind /path/to/scripts:/myscripts \
@@ -82,12 +84,14 @@ Preprocessing
 
 - Your scripts folder has been mounted to /myscript on the Singularity session so let's go there:
 
-.. code:: bash
+::
+
   cd /myscripts
 
 - Now in order to preprocess one subject, you just need to give its name to the script you have downloaded earlier:
 
-.. code:: bash
+::
+
   ./preproc_NODDI_Singularity.sh 'Subject_001'
 
 - **Note 1: If you get a Permission denied error, please do a chmod +x on preproc_NODDI_Singularity.sh script**
@@ -101,7 +105,8 @@ Preprocessing multiple subjects with parallel
 - Now you may want to process several Subjects at once. Fortunately, the person who made the Docker image (me!) also put a nice tool to do so.
 - Example of how to do parallel processing with a find command:
 
-.. code:: bash
+::
+
   raw_dir=/data/Raw_data
   TMPDIR=/tmp
   find ${raw_dir} -name "CBD*" | parallel --eta bash preproc_NODDI_Singularity.sh {/}
@@ -115,7 +120,8 @@ Preprocessing multiple subjects with slurm (cheaha)
 
 - Another possibility to do parallel multi-processing is to use SLURM on Cheaha. In order to do that we need to create a job file. Let's start with a simple job for one subject:
 
-.. code:: bash
+::
+
   #!/bin/bash
   #SBATCH --partition=short
   #SBATCH --cpus-per-task=10
@@ -135,7 +141,8 @@ Preprocessing multiple subjects with slurm (cheaha)
 
 - Now we can modify this job in order to process several subject at once:
 
-.. code:: bash
+::
+
   #!/bin/bash
   #SBATCH --partition=short
   #SBATCH --cpus-per-task=10
@@ -150,12 +157,13 @@ Preprocessing multiple subjects with slurm (cheaha)
   --bind /data/user/rodolphe/Scripts/Origin/Szaflarski\ lab/MRST/NODDI/preprocessing:/myscripts \
   NODDI_docker.simg bash /myscripts/preproc_NODDI_Singularity.sh ${FILES[$SLURM_ARRAY_TASK_ID]}
 
-- The new #SBATCH array is telling the system how many jobs we want (It is a range , starting from zero!!). Then we create a list of subject ID (array named FILES). We use  ${FILES[$SLURM_ARRAY_TASK_ID]} in order to access each subject ID. This will create 5 jobs with $SLURM_ARRAY_TASK_ID having a different value in each one on them (from 0 to 4).
+- The new #SBATCH array is telling the system how many jobs we want (It is a range , starting from zero!!). Then we create a list of subject ID (array named FILES). We use  ``${FILES[$SLURM_ARRAY_TASK_ID]}`` in order to access each subject ID. This will create 5 jobs with $SLURM_ARRAY_TASK_ID having a different value in each one on them (from 0 to 4).
 
 
 - Finally, is it possible to search for subject IDs within a folder instead of manually writing all the ID:
 
-.. code:: bash
+::
+
   #!/bin/bash
   #SBATCH --partition=short
   #SBATCH --cpus-per-task=10
