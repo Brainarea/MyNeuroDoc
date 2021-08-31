@@ -1,11 +1,11 @@
 
-NODDI ANALYSIS PART 2 : NODDI COMPUTATION
+Noddi analysis part 2 : noddi computation
 =========================================
 
 - **Note: Documentation for NODDI toolbox is available here: http://mig.cs.ucl.ac.uk/index.php?n=Tutorial.NODDImatlab**
 
 
-GET THE TOOLBOX
+Get the toolbox
 ---------------
 
 - In order to compute NODDI files, you need the MATLAB Noddi toolbox, the Nifti Matlab toolbox and SPM12:
@@ -17,14 +17,14 @@ GET THE TOOLBOX
 - Next you need a Matlab script available at : https://github.com/Brainarea/NODDI/tree/main/Matlab_files
 
 
-RUN THE SCRIPT
+Run the script
 --------------
 
 - Let's open Matlab on CHEAHA, open a new terminal and type:
 
 .. code:: bash
   module load rc/matlab/R2020a
-  
+
 - **Note: Other matlab version are available on CHEAHA, R2020a is working fine but feel free to change if needed**
 - Then type matlab in terminal to launch MATLAB
 - Open the matlab script you previously downloaded.
@@ -36,7 +36,7 @@ RUN THE SCRIPT
 - A Noddi_files folder will be created containing all NODDI files for each subject !
 
 
-RUN THE SCRIPT ON SLURM (CHEAHA)
+Run the script on slurm (cheaha)
 --------------------------------
 
 - See SLURM section on preprocessing to learn about Job creation and use.
