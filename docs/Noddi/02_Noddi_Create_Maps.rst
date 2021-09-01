@@ -1,5 +1,5 @@
 
-Noddi analysis part 2 : noddi computation
+Noddi analysis part 2 : Noddi computation
 =========================================
 
 - **Note: Documentation for NODDI toolbox is available here: http://mig.cs.ucl.ac.uk/index.php?n=Tutorial.NODDImatlab**
@@ -14,7 +14,7 @@ Get the toolbox
   - Download Nifti Matlab: https://github.com/NIFTI-Imaging/nifti_matlab
   - Download SPM12: https://www.fil.ion.ucl.ac.uk/spm/software/download/
 
-- Next you need a Matlab script available at : https://github.com/Brainarea/NODDI/tree/main/Matlab_files
+- Next you need a Matlab script available in Matlab_files folder of the repository
 
 
 Run the script
@@ -37,17 +37,21 @@ Run the script
 - A Noddi_files folder will be created containing all NODDI files for each subject !
 
 
-Run the script on slurm (cheaha)
+Run the script on slurm (Cheaha)
 --------------------------------
 
 - See SLURM section on preprocessing to learn about Job creation and use.
 - Here we use a single-subject version of the Matlab script.
-- WARNING! The Noddi toolbox script needs to be modified for this method to work
+
+.. warning::
+
+ The Noddi toolbox script needs to be modified for this method to work
+ 
 - Two files are therefore needed to make this work:
 
-  - MRST_NODDI_single_subject_SLURM.m: used in job's script below (modified matlab script used for signle subject)
+  - MRST_NODDI_single_subject_SLURM.m: used in job's script below (modified Matlab script used for single subject)
   - batch_fitting.m: Modified file from Noddi toolbox. Replace one existing in toolbox folder with that one.
-  - Both files are available in MAtlab_files_SLURM folder of the github repository ( https://github.com/Brainarea/NODDI/)
+  - Both files are available in Matlab_files_SLURM folder of the github repository.
 
 ::
 
