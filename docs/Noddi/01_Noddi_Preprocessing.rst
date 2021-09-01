@@ -116,7 +116,8 @@ Preprocessing multiple subjects with parallel
 Preprocessing multiple subjects with slurm (cheaha)
 ---------------------------------------------------
 
-# Create JOB file
+Create JOB file
+^^^^^^^^^^^^^^^
 
 - Another possibility to do parallel multi-processing is to use SLURM on Cheaha. In order to do that we need to create a job file. Let's start with a simple job for one subject:
 
@@ -179,7 +180,8 @@ Preprocessing multiple subjects with slurm (cheaha)
   --bind /data/user/rodolphe/Scripts/Origin/Szaflarski\ lab/MRST/NODDI/preprocessing:/myscripts \
   NODDI_docker.simg bash /myscripts/preproc_NODDI_Singularity.sh ${FILES[$SLURM_ARRAY_TASK_ID]}
 
-# Use Job files
+Use Job files
+^^^^^^^^^^^^^
 
 - Now that you have your job save as a file let's use it. Go to rc.uab.edu then click on Jobs>Job composer.
 - Create a new job by clicking on 'New job' then 'From Specified path'
