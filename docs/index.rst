@@ -7,3 +7,4 @@ Welcome to My Neuro Documentation
 
    Noddi/01_Noddi_Preprocessing
    Noddi/02_Noddi_Create_Maps
+   Noddi/03_Warp_Noddi_Maps
