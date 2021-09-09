@@ -19,7 +19,7 @@ Let's use it directly in Cheaha SLURM:
 
 ::
 
-#!/bin/bash
+  #!/bin/bash
 
   #SBATCH --partition=short
   #SBATCH --cpus-per-task=10
@@ -39,6 +39,6 @@ Let's use it directly in Cheaha SLURM:
   NODDI_docker.simg bash /myscripts/warp_NODDI_Singularity.sh ${FILES[$SLURM_ARRAY_TASK_ID]}
 
 
-::warning
+.. warning::
 
   Script will create a ``Noddi_files_warped`` folder containing the final noramlized NODDI FILES
