@@ -5,6 +5,8 @@ function MRST_NODDI_single_subject_SLURM(subject,poolsize)
 %%% MRST DATA processing
 
 restoredefaultpath
+
+%%%%%%%%%%% PART TO CHANGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 addpath(genpath('/data/user/rodolphe/Toolbox/NODDI/NODDI_toolbox_v1.04/'));
 addpath(genpath('/data/user/rodolphe/Toolbox/nifti_matlab/'));
 addpath(genpath('/data/user/rodolphe/Toolbox/spm12'));
@@ -12,6 +14,7 @@ rmpath(genpath('/data/user/rodolphe/Toolbox/spm12/external/fieldtrip/compat/'));
 
 % Where the Data is
 data_path = '/data/user/rodolphe/Data/MRST/NODDI/Preprocessed/';
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 subj_name = subject;
 subj_folder = strcat(data_path,subj_name);
