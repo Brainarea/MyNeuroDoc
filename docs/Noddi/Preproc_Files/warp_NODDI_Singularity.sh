@@ -23,7 +23,9 @@ mkdir $SUBJ_WARPED $SUBJ_ALPS_WARPED $SUBJ_DTI_WARPED
 3dMedianFilter -irad 2 -prefix ${SUBJ_ALPS_WARPED}/${subject}_DZZ.3mm.nii ${SUBJ_ALPS}/${subject}_DZZ.nii
 3dMedianFilter -irad 2 -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_FA.3mm.nii ${SUBJ_DTI}/${subject}_DTI_FA.nii.gz
 3dMedianFilter -irad 2 -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_MD.3mm.nii ${SUBJ_DTI}/${subject}_DTI_MD.nii.gz
-
+3dMedianFilter -irad 2 -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_AD.3mm.nii ${SUBJ_DTI}/${subject}_DTI_L1.nii.gz
+3dcalc -a ${SUBJ_DTI}/${subject}_DTI_L2.nii.gz -b ${SUBJ_DTI}/${subject}_DTI_L3.nii.gz -expr '(a+b)/2' -prefix ${SUBJ_DTI}/${subject}_DTI_RD.nii.gz
+3dMedianFilter -irad 2 -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_RD.3mm.nii ${SUBJ_DTI}/${subject}_DTI_RD.nii.gz
 
 
 3dQwarp -base ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -source ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm.nii -resample -minpatch 3 -blur 0 3 -useweight -Qfinal -penfac 0.5 -iwarp -maxlev 14 -prefix ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp
@@ -35,6 +37,9 @@ mkdir $SUBJ_WARPED $SUBJ_ALPS_WARPED $SUBJ_DTI_WARPED
 3dNwarpApply -nwarp ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp_WARP+tlrc -source ${SUBJ_ALPS_WARPED}/${subject}_DZZ.3mm.nii -master ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -prefix ${SUBJ_ALPS_WARPED}/${subject}_DZZ.3mm_warp
 3dNwarpApply -nwarp ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp_WARP+tlrc -source  ${SUBJ_DTI_WARPED}/${subject}_DTI_FA.3mm.nii -master ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_FA.3mm_warp
 3dNwarpApply -nwarp ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp_WARP+tlrc -source  ${SUBJ_DTI_WARPED}/${subject}_DTI_MD.3mm.nii -master ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_MD.3mm_warp
+3dNwarpApply -nwarp ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp_WARP+tlrc -source  ${SUBJ_DTI_WARPED}/${subject}_DTI_RD.3mm.nii -master ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_RD.3mm_warp
+3dNwarpApply -nwarp ${SUBJ_T1}/${subject}_T1_ns_deob_acpc.3mm_warp_WARP+tlrc -source  ${SUBJ_DTI_WARPED}/${subject}_DTI_AD.3mm.nii -master ${tempdir}/mni_icbm152_t1_tal_nlin_sym_09a_masked.nii -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_AD.3mm_warp
+
 
 
 
@@ -48,11 +53,23 @@ mkdir $SUBJ_WARPED $SUBJ_ALPS_WARPED $SUBJ_DTI_WARPED
 3dcalc -a ${SUBJ_ALPS_WARPED}/${subject}_DZZ.3mm_warp+tlrc -expr 'a' -prefix ${SUBJ_ALPS_WARPED}/${subject}_DZZ.3mm_warp_final.nii
 3dcalc -a ${SUBJ_DTI_WARPED}/${subject}_DTI_FA.3mm_warp+tlrc -expr 'a' -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_FA.3mm_warp_final.nii
 3dcalc -a ${SUBJ_DTI_WARPED}/${subject}_DTI_MD.3mm_warp+tlrc -expr 'a' -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_MD.3mm_warp_final.nii
+3dcalc -a ${SUBJ_DTI_WARPED}/${subject}_DTI_RD.3mm_warp+tlrc -expr 'a' -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_RD.3mm_warp_final.nii
+3dcalc -a ${SUBJ_DTI_WARPED}/${subject}_DTI_AD.3mm_warp+tlrc -expr 'a' -prefix ${SUBJ_DTI_WARPED}/${subject}_DTI_AD.3mm_warp_final.nii
 
 
 ## Cleaning
 
 cd ${SUBJ_WARPED}
+rm *.BRIK
+rm *.HEAD
+rm *3mm.nii
+
+cd ${SUBJ_ALPS_WARPED}
+rm *.BRIK
+rm *.HEAD
+rm *3mm.nii
+
+cd ${SUBJ_DTI_WARPED}
 rm *.BRIK
 rm *.HEAD
 rm *3mm.nii
