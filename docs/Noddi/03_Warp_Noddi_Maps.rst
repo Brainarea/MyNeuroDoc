@@ -41,4 +41,4 @@ Let's use it directly in Cheaha SLURM:
 
 .. warning::
 
-  Script will create a ``Noddi_files_warped`` folder containing the final noramlized NODDI FILES
+  Script will create a ``Noddi_files_warped`` folder containing the final normalized NODDI FILES
