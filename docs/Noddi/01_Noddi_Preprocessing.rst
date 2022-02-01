@@ -20,7 +20,7 @@ Getting essential files
 -----------------------
 
 - All you need is the script file and a config file!
-- Both are available at: https://github.com/Brainarea/NODDI/tree/main/Preproc_Files
+- Both are available at: https://github.com/Brainarea/MyNeuroDoc/tree/main/docs/Noddi/Preproc_Files
 - Download both files and put them in a folder on Cheaha.
 
 
