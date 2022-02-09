@@ -51,7 +51,7 @@ Run the script on slurm (Cheaha)
 
   - MRST_NODDI_single_subject_SLURM.m: used in job's script below (modified Matlab script used for single subject)
   - batch_fitting.m: Modified file from Noddi toolbox. Replace one existing in toolbox folder with that one.
-  - Both files are available in Matlab_files_SLURM folder of the github repository.
+  - Both files are available in Matlab_files_SLURM folder of the github repository: https://github.com/Brainarea/MyNeuroDoc/tree/main/docs/Noddi/Matlab_files_SLURM
 
 ::
 
