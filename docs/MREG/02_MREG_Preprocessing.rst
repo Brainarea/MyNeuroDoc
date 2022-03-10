@@ -52,5 +52,4 @@ singularity shell \
 --bind /Mreg_analysis:/data \
 --bind /path/to/scripts:/myscripts \
 NIPYPE_docker.simg
-
 source activate neuro
